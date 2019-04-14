@@ -60,5 +60,12 @@ const getUserData = () => {
   }
 };
 
+const enterSubmit = e => {
+  if (e.keyCode === 13) {
+    getUserData();
+  }
+};
+
 // event listener
 btn.addEventListener('click', getUserData);
+window.addEventListener('keyup', enterSubmit);
