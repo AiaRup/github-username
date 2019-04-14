@@ -1,6 +1,6 @@
 // elements to work with
-const btn = document.querySelector('.btn');
-const input = document.querySelector('#username');
+const btn = document.querySelector('.form__btn');
+const input = document.querySelector('.form__input');
 let list = document.querySelector('.listName');
 let errorMsg = document.querySelector('.errorMsg');
 
@@ -9,9 +9,12 @@ const url = 'https://api.github.com/users/';
 
 // function to paint data on page
 const paintNameOnPage = name => {
-  const arrayName = name.substr(0, name.indexOf(' ')).split('');
+  const arrayName = name
+    .substr(0, name.indexOf(' '))
+    .toUpperCase()
+    .split('');
   for (const char of arrayName) {
-    list.innerHTML += `<li>${char}</li>`;
+    list.innerHTML += `<li class="letter">${char}</li>`;
   }
 };
 
@@ -24,13 +27,19 @@ const checkUsername = username => {
   }
 };
 
-// funcrion to fetch user data
+// function to fetch user data
 const githubFetch = value => {
   fetch(`${url + value}`)
     .then(data => data.json())
     .then(result => {
       console.log(result);
-      checkUsername(result.name);
+      if (result.message === 'Not Found') {
+        errorMsg.innerHTML =
+          'The username you provided does not exist on github';
+        errorMsg.classList.remove('hidden');
+      } else {
+        checkUsername(result.name);
+      }
     })
     .catch(error => console.log('error', error));
 };

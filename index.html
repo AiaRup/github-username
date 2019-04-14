@@ -8,10 +8,14 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <label for="username">Escribe el nick de una usuaria de Github</label>
-    <input type="text" name="username" id="username" />
-    <button type="button" class="btn">buscar</button>
-    <p class="errorMsg hidden"></p>
+    <div class="form__container">
+      <label for="username" class="form__label"
+        >Escribe el nick de una usuaria de Github</label
+      >
+      <input type="text" name="username" id="username" class="form__input" />
+      <button type="button" class="form__btn">buscar</button>
+      <p class="errorMsg hidden"></p>
+    </div>
     <ol class="listName"></ol>
     <script type="text/javascript" src="js/main.js"></script>
   </body>
